@@ -15,7 +15,8 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<BookManagementDbContext>(options =>
 {
     // Use the connection string from appsettings.json or environment variables
-    options.UseSqlServer(builder.Configuration.GetConnectionString("BookDbLocal"));
+    //options.UseSqlServer(builder.Configuration.GetConnectionString("BookDbLocal"));
+    options.UseSqlServer(builder.Configuration.GetConnectionString("BookDbVps"));
 });
 
 // Register repositories and services (assuming you have these interfaces and implementations)
