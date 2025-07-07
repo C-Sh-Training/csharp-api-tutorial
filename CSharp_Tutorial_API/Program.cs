@@ -1,4 +1,6 @@
 using CSharp_Tutorial_Repositories.DbContext;
+using CSharp_Tutorial_Repositories.Repositories;
+using CSharp_Tutorial_Services.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -20,7 +22,8 @@ builder.Services.AddDbContext<BookManagementDbContext>(options =>
 });
 
 // Register repositories and services (assuming you have these interfaces and implementations)
-
+builder.Services.AddScoped<IAuthorRepository, AuthorRepository>();
+builder.Services.AddScoped<IAuthorService, AuthorService>();
 
 var app = builder.Build();
 
