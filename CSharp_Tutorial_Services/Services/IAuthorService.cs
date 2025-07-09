@@ -12,8 +12,8 @@ namespace CSharp_Tutorial_Services.Services
         // Interface methods for managing authors
         Task<List<AuthorModel>> GetAllAuthorsAsync();
         Task<AuthorModel> GetAuthorByIdAsync(int id);
-        Task<AuthorModel> AddAuthorAsync(AuthorModel author);
-        Task<AuthorModel> UpdateAuthorAsync(AuthorModel author);
-        Task<bool> DeleteAuthorAsync(int id);
+        Task<AuthorModel> AddAuthorAsync(CreateAuthorModel author);
+        Task<AuthorModel> UpdateAuthorAsync(int id, UpdateAuthorModel author);
+        Task<AuthorModel> DeleteAuthorAsync(int id);
     }
 }

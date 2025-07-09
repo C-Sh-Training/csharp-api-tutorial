@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.WebSockets;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -25,9 +26,9 @@ namespace CSharp_Tutorial_Repositories.Repositories
             return author;
         }
 
-        public async Task<bool> DeleteAuthorAsync(int id)
+        public async Task<bool> DeleteAuthorAsync(Author deletedAuthor)
         {
-            _context.Authors.Remove(new Author { Id = id });
+            _context.Authors.Remove(deletedAuthor);
             await _context.SaveChangesAsync();
             return true;
         }

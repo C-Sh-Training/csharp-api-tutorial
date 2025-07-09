@@ -1,5 +1,6 @@
 using CSharp_Tutorial_Repositories.DbContext;
 using CSharp_Tutorial_Repositories.Repositories;
+using CSharp_Tutorial_Services.Mappers;
 using CSharp_Tutorial_Services.Services;
 using Microsoft.EntityFrameworkCore;
 
@@ -20,6 +21,9 @@ builder.Services.AddDbContext<BookManagementDbContext>(options =>
     //options.UseSqlServer(builder.Configuration.GetConnectionString("BookDbLocal"));
     options.UseSqlServer(builder.Configuration.GetConnectionString("BookDbVps"));
 });
+
+// config automapper
+builder.Services.AddAutoMapper(typeof(MapperConfig).Assembly);
 
 // Register repositories and services (assuming you have these interfaces and implementations)
 builder.Services.AddScoped<IAuthorRepository, AuthorRepository>();

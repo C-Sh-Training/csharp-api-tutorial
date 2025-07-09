@@ -1,5 +1,4 @@
-﻿using CSharp_Tutorial_Repositories.Entities;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -8,10 +7,9 @@ using System.Threading.Tasks;
 
 namespace CSharp_Tutorial_Services.BusinessObjects
 {
-    public class AuthorModel
+    public class UpdateAuthorModel
     {
-        public int Id { get; set; }
-        
+
         [Required(ErrorMessage = "Author name is required")]
         [MaxLength(100, ErrorMessage = "Name cannot exceed 100 characters.")]
         public string Name { get; set; } = string.Empty;

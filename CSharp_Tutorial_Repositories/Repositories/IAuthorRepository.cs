@@ -14,6 +14,6 @@ namespace CSharp_Tutorial_Repositories.Repositories
         Task<Author?> GetAuthorByIdAsync(int id);
         Task<Author> AddAuthorAsync(Author author);
         Task<Author> UpdateAuthorAsync(Author author);
-        Task<bool> DeleteAuthorAsync(int id);
+        Task<bool> DeleteAuthorAsync(Author author);
     }
 }
