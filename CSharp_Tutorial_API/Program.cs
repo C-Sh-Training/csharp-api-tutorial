@@ -1,4 +1,6 @@
 using CSharp_Tutorial_Repositories.DbContext;
+using CSharp_Tutorial_Repositories.Repositories;
+using CSharp_Tutorial_Services.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -15,11 +17,12 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<BookManagementDbContext>(options =>
 {
     // Use the connection string from appsettings.json or environment variables
-    options.UseSqlServer(builder.Configuration.GetConnectionString("BookDbLocal"));
+    options.UseNpgsql(builder.Configuration.GetConnectionString("BookDbLocal"));
 });
 
 // Register repositories and services (assuming you have these interfaces and implementations)
-
+builder.Services.AddScoped<IAuthorService, AuthorService>();
+builder.Services.AddScoped<IAuthorRepository, AuthorRepository>();
 
 var app = builder.Build();
 

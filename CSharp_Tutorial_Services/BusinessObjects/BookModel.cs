@@ -9,5 +9,6 @@ namespace CSharp_Tutorial_Services.BusinessObjects
     public class BookModel
     {
         // Properties of the BookModel class
+
     }
 }
