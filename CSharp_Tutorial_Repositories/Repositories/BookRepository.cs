@@ -4,11 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CSharp_Tutorial_Services.BusinessObjects
+namespace CSharp_Tutorial_Repositories.Repositories
 {
-    public class BookModel
+    public class BookRepository
     {
-        // Properties of the BookModel class
-
     }
 }
