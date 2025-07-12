@@ -52,6 +52,7 @@ namespace CSharp_Tutorial_Repositories.Repositories
         {
             _context.Authors.Update(author);
             return await _context.SaveChangesAsync().ContinueWith(t => author);
+            // địt mẹ mày
         }
     }
 }
