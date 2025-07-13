@@ -1,4 +1,4 @@
-﻿using CSharp_Tutorial_Services.BusinessObjects;
+﻿using CSharp_Tutorial_Services.BusinessObjects.AuthorModels;
 using CSharp_Tutorial_Services.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.HttpResults;
@@ -67,7 +67,7 @@ namespace CSharp_Tutorial_API.Controllers
         }
 
 
-        [HttpGet("get-by-id")]
+        [HttpGet("{id:int}")]
         public async Task<IActionResult> GetAuthorById(int id)
         {
             try
@@ -81,7 +81,7 @@ namespace CSharp_Tutorial_API.Controllers
             }  
         }
 
-        [HttpPut]
+        [HttpPut("{id:int}")]
         public async Task<IActionResult> UpdateAuthorById([FromQuery] int? id, [FromBody] UpdateAuthorModel updateAuthorModel)
         {
             try
@@ -102,7 +102,7 @@ namespace CSharp_Tutorial_API.Controllers
             }
         }
 
-        [HttpDelete]
+        [HttpDelete("{id:int}")]
         public async Task<IActionResult> DeleteAuthor(int id)
         {
             try

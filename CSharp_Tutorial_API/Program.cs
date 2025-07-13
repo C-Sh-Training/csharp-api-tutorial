@@ -1,5 +1,6 @@
 using CSharp_Tutorial_Repositories.DbContext;
 using CSharp_Tutorial_Repositories.Repositories;
+using CSharp_Tutorial_Services.Mappers;
 using CSharp_Tutorial_Services.Services;
 using Microsoft.EntityFrameworkCore;
 
@@ -23,6 +24,11 @@ builder.Services.AddDbContext<BookManagementDbContext>(options =>
 // Register repositories and services (assuming you have these interfaces and implementations)
 builder.Services.AddScoped<IAuthorService, AuthorService>();
 builder.Services.AddScoped<IAuthorRepository, AuthorRepository>();
+builder.Services.AddScoped<IBookService, BookService>();
+builder.Services.AddScoped<IBookRepository, BookRepository>();
+
+// Register AutoMapper (if you are using it for mapping)    
+ builder.Services.AddAutoMapper(typeof(MapperConfig).Assembly); 
 
 var app = builder.Build();
 
