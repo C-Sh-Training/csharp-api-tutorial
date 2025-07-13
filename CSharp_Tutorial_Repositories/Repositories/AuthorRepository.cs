@@ -37,8 +37,8 @@ namespace CSharp_Tutorial_Repositories.Repositories
         }
 
         public async Task<List<Author>> GetAllAuthorAsync()
-        {
-            return await _context.Authors.ToListAsync();
+        {      
+            return await _context.Authors.OrderBy(a => a.Id).ToListAsync();
         }
 
         public async Task<Author?> GetAuthorByIdAsync(int? id)
@@ -52,7 +52,6 @@ namespace CSharp_Tutorial_Repositories.Repositories
         {
             _context.Authors.Update(author);
             return await _context.SaveChangesAsync().ContinueWith(t => author);
-            // địt mẹ mày
         }
     }
 }

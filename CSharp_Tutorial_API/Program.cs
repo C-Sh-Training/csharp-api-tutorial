@@ -23,6 +23,8 @@ builder.Services.AddDbContext<BookManagementDbContext>(options =>
 // Register repositories and services (assuming you have these interfaces and implementations)
 builder.Services.AddScoped<IAuthorService, AuthorService>();
 builder.Services.AddScoped<IAuthorRepository, AuthorRepository>();
+builder.Services.AddScoped<IBookService, BookService>();
+builder.Services.AddScoped<IBookRepository, BookRepository>();
 
 var app = builder.Build();
 

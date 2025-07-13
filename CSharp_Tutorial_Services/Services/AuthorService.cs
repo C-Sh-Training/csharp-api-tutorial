@@ -153,43 +153,47 @@ namespace CSharp_Tutorial_Services.Services
             }
         }
 
-        public async Task<UpdateAuthorModel> UpdateAuthorAsync(int? id, UpdateAuthorModel updateAuthorModel)
+        public async Task<GetAllAuthorModel> UpdateAuthorAsync(int? id, UpdateAuthorModel updateAuthorModel)
         {
             try
             {
-                if(updateAuthorModel == null)
+               //write logic code for update author
+                if (updateAuthorModel == null)
                 {
                     throw new Exception("Author can not be null!");
                 }
-
-                var authors = await _authorRepository.GetAllAuthorAsync();
-
-                var matchedAuthor = await _authorRepository.GetAuthorByIdAsync(id);
-
-                var authorToUpdate = new Author
+                if (updateAuthorModel.DateOfBirth > DateTime.Now.AddYears(-18))
                 {
-                    Name = updateAuthorModel.Name,
-                    Biography = updateAuthorModel.Biography,
-                    DateOfBirth = updateAuthorModel.DateOfBirth,
-                };
-
-                
-
-                if(matchedAuthor == null)
-                {
-                    throw new Exception("Author not found!");
+                    throw new Exception("Author must be older 18 years old!");
                 }
-
-                var reponseAuthor = new UpdateAuthorModel
+                //Check existed author
+                var existingAuthors = await _authorRepository.GetAllAuthorAsync();
+                var authorExist = existingAuthors.Any(a => a.Name.Equals(updateAuthorModel.Name, StringComparison.OrdinalIgnoreCase) && a.Id != id);
+                if (authorExist)
                 {
-                    Name = matchedAuthor.Name,
-                    Biography = matchedAuthor.Biography,
-                    DateOfBirth = matchedAuthor.DateOfBirth
+                    throw new Exception("Author already existed!");
+                }
+                //Get the author by id
+                var existingAuthor = await _authorRepository.GetAuthorByIdAsync(id);
+                if (existingAuthor == null)
+                {
+                    throw new Exception("Author is not existed!");
+                }
+                //Update the author entity
+                existingAuthor.Name = updateAuthorModel.Name;
+                existingAuthor.Biography = updateAuthorModel.Biography;
+                existingAuthor.DateOfBirth = updateAuthorModel.DateOfBirth;
+                //Update the author in the repository
+                var updatedAuthor = await _authorRepository.UpdateAuthorAsync(existingAuthor);
+                //Convert Author Entity to Author Model
+                var getAllAuthorModel = new GetAllAuthorModel
+                {
+                    Id = updatedAuthor.Id,
+                    Name = updatedAuthor.Name,
+                    Biography = updatedAuthor.Biography,
+                    DateOfBirth = updatedAuthor.DateOfBirth,
                 };
-
-                await _authorRepository.UpdateAuthorAsync(authorToUpdate);
-
-                return reponseAuthor;
+                return getAllAuthorModel;
             }
             catch
             {

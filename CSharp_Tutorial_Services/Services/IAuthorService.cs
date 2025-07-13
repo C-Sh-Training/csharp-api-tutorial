@@ -13,7 +13,7 @@ namespace CSharp_Tutorial_Services.Services
         Task<List<GetAllAuthorModel>> GetAllAuthorAsync();
         Task<GetAllAuthorModel?> GetAuthorByIdAsync(int? id);
         Task<GetAllAuthorModel> AddAuthorAsync(GetAllAuthorModel author);
-        Task<UpdateAuthorModel> UpdateAuthorAsync(int? id, UpdateAuthorModel author);
+        Task<GetAllAuthorModel> UpdateAuthorAsync(int? id, UpdateAuthorModel author);
         Task<bool> DeleteAuthorAsync(int id);
     }
 }

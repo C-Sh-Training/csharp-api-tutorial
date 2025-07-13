@@ -12,7 +12,7 @@ namespace CSharp_Tutorial_Repositories.Repositories
         // repository methods for managing books
         Task<List<Book>> GetAllBookAsync();
         Task<Book?> GetBookByIdAsync(int id);
-        Task<Book?> AddBookAsync(Book book);
+        Task<Book> AddBookAsync(Book book);
         Task<Book> UpdateBookAsync(Book book);
         Task<bool> DeleteBookAsync(int id);
     }
