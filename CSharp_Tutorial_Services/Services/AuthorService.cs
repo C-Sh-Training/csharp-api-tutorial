@@ -1,6 +1,7 @@
-﻿using CSharp_Tutorial_Repositories.Entities;
+﻿using AutoMapper;
+using CSharp_Tutorial_Repositories.Entities;
 using CSharp_Tutorial_Repositories.Repositories;
-using CSharp_Tutorial_Services.BusinessObjects;
+using CSharp_Tutorial_Services.BusinessObjects.AuthorModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,10 +13,12 @@ namespace CSharp_Tutorial_Services.Services
     public class AuthorService : IAuthorService
     {
         private readonly IAuthorRepository _authorRepository;
+        private readonly IMapper _mapper;
 
-        public AuthorService(IAuthorRepository authorRepository)
+        public AuthorService(IAuthorRepository authorRepository, IMapper mapper)
         {
             _authorRepository = authorRepository;
+            _mapper = mapper;
         }
 
         public async Task<GetAllAuthorModel> AddAuthorAsync(GetAllAuthorModel author)
@@ -105,14 +108,18 @@ namespace CSharp_Tutorial_Services.Services
                 var authors = await _authorRepository.GetAllAuthorAsync();
 
                 //Convert the list of Author entities to AuthorModel
-                var authorModels = authors.Select(a => new GetAllAuthorModel
-                {
-                    Id = a.Id,
-                    Name = a.Name,
-                    Biography = a.Biography,
-                    DateOfBirth = a.DateOfBirth,
-                }
-                ).ToList();
+                //var authorModels = authors.Select(a => new GetAllAuthorModel
+                //{
+                //    Id = a.Id,
+                //    Name = a.Name,
+                //    Biography = a.Biography,
+                //    DateOfBirth = a.DateOfBirth,
+                //}
+                //).ToList();
+
+                //map the authorModels to GetAllAuthorModel using AutoMapper
+                var authorModels = _mapper.Map<List<GetAllAuthorModel>>(authors); 
+
 
                 return authorModels;
             }
@@ -137,13 +144,15 @@ namespace CSharp_Tutorial_Services.Services
                     throw new Exception("Author is not existed!");
                 }
 
-                var authorModel = new GetAllAuthorModel
-                {
-                    Id = exestingAuthor.Id,
-                    Name = exestingAuthor.Name,
-                    Biography = exestingAuthor.Biography,
-                    DateOfBirth = exestingAuthor.DateOfBirth,
-                };
+                //var authorModel = new GetAllAuthorModel
+                //{
+                //    Id = exestingAuthor.Id,
+                //    Name = exestingAuthor.Name,
+                //    Biography = exestingAuthor.Biography,
+                //    DateOfBirth = exestingAuthor.DateOfBirth,
+                //};
+
+                var authorModel = _mapper.Map<GetAllAuthorModel>(exestingAuthor);
 
                 return authorModel;
             }

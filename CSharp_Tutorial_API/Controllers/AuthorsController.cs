@@ -1,4 +1,4 @@
-﻿using CSharp_Tutorial_Services.BusinessObjects;
+﻿using CSharp_Tutorial_Services.BusinessObjects.AuthorModels;
 using CSharp_Tutorial_Services.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.HttpResults;

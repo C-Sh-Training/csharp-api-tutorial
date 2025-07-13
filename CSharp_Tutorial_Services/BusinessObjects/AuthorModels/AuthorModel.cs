@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CSharp_Tutorial_Services.BusinessObjects
+namespace CSharp_Tutorial_Services.BusinessObjects.AuthorModels
 {
-    public class GetAllAuthorModel
+    internal class AuthorModel
     {
         public int? Id { get; set; }
 

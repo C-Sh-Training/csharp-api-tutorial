@@ -1,5 +1,5 @@
 ﻿using CSharp_Tutorial_Repositories.Entities;
-using CSharp_Tutorial_Services.BusinessObjects;
+using CSharp_Tutorial_Services.BusinessObjects.AuthorModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
